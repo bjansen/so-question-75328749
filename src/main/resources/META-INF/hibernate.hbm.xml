@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping"
+				   default-access="field"
+				   default-cascade="all"
+				   default-lazy="true">
+
+	<class name="com.example.demo.File">
+		<id name="id"/>
+		<discriminator column="file_type"/>
+
+		<subclass name="com.example.demo.InFile" discriminator-value="InFile"/>
+		<subclass name="com.example.demo.TypedOutFile1" discriminator-value="TypedOutFile1"/>
+		<subclass name="com.example.demo.TypedOutFile2" discriminator-value="TypedOutFile2"/>
+		<subclass name="com.example.demo.OutFile" discriminator-value="OutFile"/>
+	</class>
+
+	<class name="com.example.demo.SpecialOutFile" table="special_file">
+		<id name="id"/>
+		<property name="moreData"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0"
+				 xmlns="http://java.sun.com/xml/ns/persistence/orm"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+
+	<access>FIELD</access>
+
+	<entity class="com.example.demo.File">
+		<discriminator-column name="type"/>
+		<attributes>
+			<id name="id"/>
+		</attributes>
+	</entity>
+
+	<entity class="com.example.demo.InFile">
+		<discriminator-value>InFile</discriminator-value>
+	</entity>
+	<entity class="com.example.demo.TypedOutFile1">
+		<discriminator-value>TypedOutFile1</discriminator-value>
+	</entity>
+	<entity class="com.example.demo.TypedOutFile2">
+		<discriminator-value>TypedOutFile2</discriminator-value>
+	</entity>
+	<entity class="com.example.demo.OutFile">
+		<discriminator-value>OutFile</discriminator-value>
+	</entity>
+
+	<entity class="com.example.demo.SpecialOutFile">
+		<secondary-table name="special_file"/>
+		<attribute-override name="id">
+			<column table="special_file"/>
+		</attribute-override>
+		<attributes>
+			<basic name="moreData">
+				<column table="special_file"/>
+			</basic>
+		</attributes>
+	</entity>
+</entity-mappings>
